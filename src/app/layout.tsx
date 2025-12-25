@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("min-h-screen bg-background antialiased", inter.className)}>
         <QueryProvider>
+          <Navbar />
           <main className="flex-grow">
             {children}
           </main>
+          <Footer />
           <Toaster />
         </QueryProvider>
       </body>

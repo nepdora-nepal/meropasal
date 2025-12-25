@@ -1,10 +1,12 @@
 
 import HeroSection from "@/components/HeroSeciton";
+import AboutUs from "@/components/AboutUs";
 const HomePage: React.FC = () => {
   return (
-    <section className="flex min-h-screen items-center justify-center bg-white text-center px-2">
+    <section className="min-h-screen bg-white">
 
       <HeroSection />
+      <AboutUs />
     </section>
   );
 };

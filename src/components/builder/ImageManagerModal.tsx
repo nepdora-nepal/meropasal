@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -24,6 +24,12 @@ export function ImageManagerModal({ isOpen, onClose, onSelect, initialTab = "lib
     const [activeTab, setActiveTab] = useState(initialTab);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const queryClient = useQueryClient();
+
+    useEffect(() => {
+        if (isOpen) {
+            setActiveTab(initialTab);
+        }
+    }, [isOpen, initialTab]);
 
     const { data: images, isLoading: isLoadingImages, isError } = useQuery({
         queryKey: ["images"],
@@ -128,7 +134,7 @@ export function ImageManagerModal({ isOpen, onClose, onSelect, initialTab = "lib
                     </TabsContent>
 
                     <TabsContent value="upload" className="flex-1 flex flex-col items-center justify-center p-6 gap-4">
-                        <div className="border-2 border-dashed border-muted-foreground/25 rounded-xl p-10 flex flex-col items-center justify-center gap-4 w-full max-w-sm hover:bg-accent/50 transition-colors">
+                        <div className="relative border-2 border-dashed border-muted-foreground/25 rounded-xl p-10 flex flex-col items-center justify-center gap-4 w-full max-w-sm hover:bg-accent/50 transition-colors">
                             <div className="bg-muted p-4 rounded-full">
                                 <Upload className="h-8 w-8 text-muted-foreground" />
                             </div>
