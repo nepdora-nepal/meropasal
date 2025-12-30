@@ -1,21 +1,21 @@
 import { tenantName } from "../../tenant.json";
+const TENANT_NAME = tenantName;
 export const siteConfig = {
   name: "Nepdora",
   description: "Nepdora Preview System",
-  tenantName: tenantName,
   get apiBaseUrl() {
-    return process.env.NEXT_PUBLIC_API_URL || `https://${this.tenantName}.nepdora.baliyoventures.com`;
+    return process.env.NEXT_PUBLIC_API_URL || `https://${TENANT_NAME}.nepdora.baliyoventures.com`;
   },
   get mediaBaseUrl() {
-    return process.env.NEXT_PUBLIC_MEDIA_URL || `https://nepdora.baliyoventures.com/media/workspaces/${this.tenantName}/public`;
+    return process.env.NEXT_PUBLIC_MEDIA_URL || `https://nepdora.baliyoventures.com/media/workspaces/${TENANT_NAME}/public`;
   },
   get endpoints() {
     const apiBase = this.apiBaseUrl;
     return {
       fetchImage: (path: string) => `${this.mediaBaseUrl}/${path.startsWith("/") ? path.slice(1) : path}`,
-      listImages: () => `${apiBase}/builder/images-map/${this.tenantName}/`,
-      updateImageMap: () => `${apiBase}/builder/update-image-map/${this.tenantName}/`,
-      uploadImage: () => `${apiBase}/builder/upload-image/${this.tenantName}/`,
+      listImages: () => `${apiBase}/builder/images-map/${TENANT_NAME}/`,
+      updateImageMap: () => `${apiBase}/builder/update-image-map/${TENANT_NAME}/`,
+      uploadImage: () => `${apiBase}/builder/upload-image/${TENANT_NAME}/`,
     };
   },
 };
