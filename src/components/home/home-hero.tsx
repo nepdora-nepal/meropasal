@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
       {/* Content Container */}
       <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 max-w-7xl mx-auto">
         <div className="max-w-4xl transition-all duration-700 ease-out transform">
-          <h1 className="text-6xl md:text-[8rem] lg:text-[10rem] font-black leading-[0.8] tracking-tighter mb-8 uppercase select-none">
+          <h1 className="text-5xl lg:text-7xl font-black leading-[0.8] tracking-tighter mb-8 uppercase select-none">
             {activeSlide.title}
             <br />
             {activeSlide.subtitle}
