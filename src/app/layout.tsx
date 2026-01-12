@@ -5,13 +5,16 @@ import { cn } from "@/lib/utils";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { CartProvider } from "@/contexts/CartContext";
-
+import Footer from "@/components/common/Footer";
+import Navbar from "@/components/common/Navbar";
+import CTASection from "@/components/common/cta-section";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sales CRM - Modern Solutions for Your Business",
-  description: "Your ultimate solution for managing sales and customer relationships with cutting-edge technology.",
+  description:
+    "Your ultimate solution for managing sales and customer relationships with cutting-edge technology.",
 };
 
 export default function RootLayout({
@@ -21,12 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("min-h-screen bg-background antialiased", inter.className)}>
+      <body
+        className={cn(
+          "min-h-screen bg-background antialiased",
+          inter.className
+        )}
+      >
         <QueryProvider>
           <CartProvider>
-            <main className="flex-grow">
-              {children}
-            </main>
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <CTASection />
+            <Footer />
             <Toaster />
           </CartProvider>
         </QueryProvider>
