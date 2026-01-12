@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 interface Slide {
   id: string;
   title: string;
   subtitle: string;
   description: string;
-  image: string;
+  imageKey: keyof typeof images;
 }
 
 const slides: Slide[] = [
@@ -18,8 +20,7 @@ const slides: Slide[] = [
     subtitle: "CULTURE",
     description:
       "Born from the streets, for the streets. We celebrate the rebels and dreamers who shape the future of urban lifestyle.",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=2000",
+    imageKey: "heroSlide1",
   },
   {
     id: "02",
@@ -27,8 +28,7 @@ const slides: Slide[] = [
     subtitle: "FASHION",
     description:
       "From oversized silhouettes to innovative materials, we push the boundaries of modern streetwear while staying true to the culture.",
-    image:
-      "https://images.unsplash.com/photo-1578932750294-f5001e65c1bb?auto=format&fit=crop&q=80&w=2000",
+    imageKey: "heroSlide2",
   },
   {
     id: "03",
@@ -36,8 +36,7 @@ const slides: Slide[] = [
     subtitle: "ATTITUDE",
     description:
       "Expression through apparel. Each piece is a canvas reflecting the raw energy of contemporary street art.",
-    image:
-      "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=2000",
+    imageKey: "heroSlide3",
   },
   {
     id: "04",
@@ -45,8 +44,7 @@ const slides: Slide[] = [
     subtitle: "STREETS",
     description:
       "Durable, high-quality fabrics and expert craftsmanship ensure every piece can handle the city grind while keeping you comfortable.",
-    image:
-      "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&q=80&w=2000",
+    imageKey: "heroSlide4",
   },
 ];
 
@@ -89,10 +87,16 @@ const Hero: React.FC = () => {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${slide.image}')` }}
-          />
+          <div className="absolute inset-0">
+            <ImageWithFallback
+              id={`hero-slide-${slide.id}`}
+              src={images[slide.imageKey]}
+              fallbackSrc={images[slide.imageKey]}
+              fill
+              className="w-full h-full object-cover"
+              alt={slide.title}
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
       ))}

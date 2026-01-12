@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 const ProductDetail = () => {
   const params = useParams();
@@ -23,12 +25,11 @@ const ProductDetail = () => {
   // For now, we'll use static data but display the slug to show it's dynamic
   const slug = params?.slug as string;
 
-  const mainImage =
-    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800";
+  const mainImage = images.productDetailMain;
   const thumbnails = [
-    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=300",
-    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=301",
-    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=302",
+    images.productDetailThumb1,
+    images.productDetailThumb2,
+    images.productDetailThumb3,
   ];
 
   return (
@@ -55,23 +56,29 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Gallery */}
           <div className="space-y-4">
-            <div className="aspect-[4/5] bg-gray-100 overflow-hidden">
-              <img
+            <div className="aspect-[4/5] bg-gray-100 overflow-hidden relative">
+              <ImageWithFallback
+                id="product-detail-main"
                 src={mainImage}
-                alt="Shadow Drip"
+                fallbackSrc={mainImage}
+                fill
                 className="w-full h-full object-cover"
+                alt="Shadow Drip"
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
               {thumbnails.map((thumb, idx) => (
                 <div
                   key={idx}
-                  className="aspect-square bg-gray-100 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                  className="aspect-square bg-gray-100 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity relative"
                 >
-                  <img
+                  <ImageWithFallback
+                    id={`product-detail-thumb-${idx + 1}`}
                     src={thumb}
-                    alt={`Thumbnail ${idx}`}
+                    fallbackSrc={thumb}
+                    fill
                     className="w-full h-full object-cover"
+                    alt={`Thumbnail ${idx}`}
                   />
                 </div>
               ))}

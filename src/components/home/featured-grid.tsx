@@ -1,5 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 const FeatureGrid: React.FC = () => {
   return (
@@ -19,8 +21,11 @@ const FeatureGrid: React.FC = () => {
 
         {/* Big Left Image */}
         <div className="lg:col-span-7 h-[500px] overflow-hidden rounded-3xl relative group">
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1200"
+          <ImageWithFallback
+            id="feature-grid-main"
+            src={images.featureGridMain}
+            fallbackSrc={images.featureGridMain}
+            fill
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             alt="Feature"
           />
@@ -66,8 +71,11 @@ const FeatureGrid: React.FC = () => {
 
         {/* Bottom Right Wide Section */}
         <div className="lg:col-span-8 h-[400px] overflow-hidden rounded-3xl relative">
-          <img
-            src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&q=80&w=1200"
+          <ImageWithFallback
+            id="feature-grid-bottom"
+            src={images.featureGridBottom}
+            fallbackSrc={images.featureGridBottom}
+            fill
             className="w-full h-full object-cover"
             alt="Feature 2"
           />

@@ -1,5 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 const ProductHighlight: React.FC = () => {
   return (
@@ -28,22 +30,32 @@ const ProductHighlight: React.FC = () => {
         </div>
 
         <div className="relative">
-          <div className="aspect-[4/5] rounded-3xl overflow-hidden mb-6">
-            <img
-              src="https://images.unsplash.com/photo-1578932750294-f5001e65c1bb?auto=format&fit=crop&q=80&w=1200"
+          <div className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 relative">
+            <ImageWithFallback
+              id="product-highlight-main"
+              src={images.productHighlightMain}
+              fallbackSrc={images.productHighlightMain}
+              fill
               className="w-full h-full object-cover"
               alt="Nightfall Hoodie"
             />
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
+            {[
+              images.productHighlightThumb1,
+              images.productHighlightThumb2,
+              images.productHighlightThumb3,
+              images.productHighlightThumb4,
+            ].map((thumb, index) => (
               <div
-                key={i}
-                className="aspect-square rounded-xl overflow-hidden bg-white/10 hover:opacity-75 cursor-pointer border border-white/5 transition-opacity"
+                key={index}
+                className="aspect-square rounded-xl overflow-hidden bg-white/10 hover:opacity-75 cursor-pointer border border-white/5 transition-opacity relative"
               >
-                {/* Fixed invalid template literal arithmetic expression */}
-                <img
-                  src={`https://images.unsplash.com/photo-1578932750294-f5001e65c1bb?auto=format&fit=crop&q=80&w=300&v=${i}`}
+                <ImageWithFallback
+                  id={`product-highlight-thumb-${index + 1}`}
+                  src={thumb}
+                  fallbackSrc={thumb}
+                  fill
                   className="w-full h-full object-cover"
                   alt="thumbnail"
                 />

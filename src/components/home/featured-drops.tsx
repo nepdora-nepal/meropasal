@@ -1,46 +1,43 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 const featuredItems = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800",
+    image: images.featuredDrop1,
     title: "Urban Core Tank",
     description: "Minimalist fit for the modern explorer.",
     slug: "urban-core-tank",
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=800",
+    image: images.featuredDrop2,
     title: "Shadow Overshirt",
     description: "Heavyweight canvas for the city grind.",
     slug: "shadow-overshirt",
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800",
+    image: images.featuredDrop3,
     title: "Cargo Rebellion",
     description: "Technical utility meets street style.",
     slug: "cargo-rebellion",
   },
   {
     id: 4,
-    image:
-      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800",
+    image: images.featuredDrop4,
     title: "Nightfall Hoodie",
     description: "Premium fleece for ultimate comfort.",
     slug: "nightfall-hoodie",
   },
   {
     id: 5,
-    image:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800",
+    image: images.featuredDrop5,
     title: "Phantom Tee",
     description: "Oversized silhouette with reflective hits.",
     slug: "phantom-tee",
@@ -104,8 +101,11 @@ const FeaturedDrops: React.FC = () => {
           >
             <Link href={`/product/${item.slug}`}>
               <div className="relative aspect-[3/4] overflow-hidden rounded-[3rem] bg-gray-100">
-                <img
+                <ImageWithFallback
+                  id={`featured-drop-${item.id}`}
                   src={item.image}
+                  fallbackSrc={item.image}
+                  fill
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   alt={item.title}
                 />

@@ -1,6 +1,7 @@
 import { Product } from "@/types/types";
 import React from "react";
 import Link from "next/link";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
 
 interface ProductCardProps {
   product: Product;
@@ -10,8 +11,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Link href={`/product/${product.slug}`} className="group cursor-pointer">
       <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100 mb-4">
-        <img
+        <ImageWithFallback
+          id={`product-card-${product.id}`}
           src={product.image}
+          fallbackSrc={product.image}
+          fill
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />

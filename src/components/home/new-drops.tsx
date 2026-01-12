@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "@/types/types";
 import ProductCard from "../products/product-card";
+import { images } from "@/services/image-loader";
 
 const products: Product[] = [
   {
@@ -11,8 +12,7 @@ const products: Product[] = [
     price: 79,
     originalPrice: 99,
     badge: "SALE",
-    image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800",
+    image: images.newDrop1,
     slug: "shadow-drip",
   },
   {
@@ -23,8 +23,7 @@ const products: Product[] = [
     price: 99,
     originalPrice: 120,
     badge: "DROP",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800",
+    image: images.newDrop2,
     slug: "urban-phantom",
   },
   {
@@ -35,8 +34,7 @@ const products: Product[] = [
     price: 89,
     originalPrice: 110,
     badge: "NEW",
-    image:
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=800",
+    image: images.newDrop3,
     slug: "neon-rebellion",
   },
 ];

@@ -1,16 +1,22 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
+import { images } from "@/services/image-loader";
 
 const CTASection: React.FC = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-24">
       <div className="relative h-[600px] rounded-[40px] overflow-hidden group">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=2000')`,
-          }}
-        />
+        <div className="absolute inset-0">
+          <ImageWithFallback
+            id="cta-background"
+            src={images.ctaBackground}
+            fallbackSrc={images.ctaBackground}
+            fill
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            alt="Call to action background"
+          />
+        </div>
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative h-full flex flex-col items-center justify-center text-center p-8">
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter mb-4 leading-none">
